@@ -33,9 +33,9 @@ export const shippingFormSchema = z.object({
   city: z.string().min(1, "City is required!"),
   postalCode: z
     .string()
-    .min(3, "Postal code must be at least 3 characters")
-    .max(10, "Postal code is too long")
-    .regex(/^[a-zA-Z0-9\s-]+$/, "Invalid postal code format"),
+    .min(3, "Postal code must be at least 3 characters!")
+    .max(10, "Postal code is too long!")
+    .regex(/^[a-zA-Z0-9\s-]+$/, "Invalid postal code format!"),
 });
 
 export type ShippingFormInputs = z.infer<typeof shippingFormSchema>;
@@ -55,3 +55,14 @@ export const paymentFormSchema = z.object({
 });
 
 export type PaymentFormInputs = z.infer<typeof paymentFormSchema>;
+
+export type CartStoreStateType = {
+  cart: CartItemsType;
+  hasHydrated: boolean;
+};
+
+export type CartStoreActionsType = {
+  addToCart: (product: CartItemType) => void;
+  removeFromCart: (product: CartItemType) => void;
+  clearCart: () => void;
+};
